@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Deformation-Aware Retrieval</title>
+    <title>Point2Cyl</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -80,35 +80,42 @@
     <!-- Primary Page Layout
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="container">
-      <h4 style="text-align:center">Deformation-Aware 3D Model Embedding and Retrieval</h4>
+      <h4 style="text-align:center">Point2Cyl: Reverse Engineering 3D Objects from Point Clouds to Extrusion Cylinders</h4>
       <p align="center", style="margin-bottom:12px;">
-        <a class="simple" href="https://mikacuy.github.io/">Mikaela Angelina Uy</a><sup>1</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="simple" href="http://cs.stanford.edu/~jingweih/">Jingwei Huang</a><sup>1</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://mikacuy.github.io/">Mikaela Angelina Uy</a><sup>*1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://yuyuchang.github.io">Yen-yu Chang</a><sup>*1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="simple" href="https://mhsung.github.io">Minhyuk Sung</a><sup>2</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://www.purvigoel.com">Purvi Goel</a><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://www.autodesk.com/research/people/joseph-lambourne">Joseph Lambourne</a><sup>3</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
         <a class="simple" href="http://tbirdal.me/">Tolga Birdal</a><sup>1</sup>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="simple" href="https://geometry.stanford.edu/member/guibas/">Leonidas Guibas</a><sup>1</sup>
       </p>
 
       <p align="center" style="margin-bottom:20px;">
         <sup>1</sup>Stanford University
         <span style="display:inline-block; width: 32px"></span>
-        <sup>2</sup>Adobe Research <br>
+        <sup>2</sup>KAIST 
+        <span style="display:inline-block; width: 32px"></span>
+        <sup>3</sup>Autodesk Research
+        <br>
       </p>
 
       <div class="venue">
-        <p align="center"> European Conference on Computer Vision (ECCV), 2020 </p>
+        <p align="center">Conference on Computer Vision and Pattern Recognition (CVPR), 2022</p>
       </div>
 
       <figure>
-        <img src="images/intro_image.png" style="width:100%"></img>
+        <img src="images/teaser_v4-compressed.png" style="width:100%"></img>
         <!-- <br> -->
       </figure>
       <div class="caption">
-        <b>Deformation-Aware Embedding Space:</b> This figure shows an overview of 1) the design of our deformation-aware embedding space using source-dependent egocentric distance fields, 2) siamese network architecture, and 3) formulation of the asymmetric embedding distance.
+        <b>Point2Cyl</b> takes a raw point cloud as input and decomposes it into extrusion cylinders while predicting all parameters including the extrusion axis, extent, and the 2D sketch (first row). The output set of extrusion cylinders can be loaded in CAD software and is editable in various ways thus creating a wide array of variations (second and third rows).
       </div>
 
       <br><br>
@@ -116,7 +123,7 @@
       <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
         <h5>Abstract</h5>
         <p align="justify">
-          We introduce a new problem of <b><i>retrieving</b></i> 3D models that are <b><i>deformable</b></i> to a given query shape and present a novel deep <b><i>deformation-aware</b></i> embedding to solve this retrieval task. 3D model retrieval is a fundamental operation for recovering a clean and complete 3D model from a noisy and partial 3D scan. However, given a finite collection of 3D shapes, even the closest model to a query may not be satisfactory. This motivates us to apply 3D model deformation techniques to adapt the retrieved model so as to better fit the query. Yet, certain restrictions are enforced in most 3D deformation techniques to preserve important features of the original model that prevent a perfect fitting of the deformed model to the query. This gap between the deformed model and the query induces asymmetric relationships among the models, which cannot be handled by typical metric learning techniques. Thus, to retrieve the best models for fitting, we propose a novel deep embedding approach that learns the <b><i>asymmetric</b></i> relationships by leveraging location-dependent egocentric distance fields. We also propose two strategies for training the embedding network. We demonstrate that both of these approaches outperform other baselines in our experiments with both synthetic and real data.
+          We propose <b>Point2Cyl</b>, a supervised network transforming a raw 3D <b>point</b> cloud <b>to</b> a set of extrusion <b>cylinders</b>. Reverse engineering from a raw geometry to a CAD model is an essential task to enable manipulation of the 3D data in shape editing software and thus expand their usages in many downstream applications. Particularly, the form of CAD models having a sequence of extrusion cylinders — a 2D sketch plus an extrusion axis and range — and their boolean combinations is not only widely used in the CAD community/software but also has great expressivity of shapes, compared to having limited types of primitives (e.g., planes, spheres, and cylinders). In this work, we introduce a neural network that solves the extrusion cylinder decomposition problem in a geometry-grounded way by first learning un- derlying geometric proxies. Precisely, our approach first predicts per-point segmentation, base/barrel labels and nor- mals, then estimates for the underlying extrusion param- eters in differentiable and closed-form formulations. Our experiments show that our approach demonstrates the best performance on two recent CAD datasets, Fusion Gallery and DeepCAD, and we further showcase our approach on reverse engineering and editing.
           <br>
           <br>
         </p>
@@ -124,15 +131,10 @@
 
       <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
         <h5>Video</h5>
-        <p>Long 10-min Presentation</p>
-      <center>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/u_8DJ06SQdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-      </center>
-      <br>
-      <p>Short 1-min Summary</p>
-      <center>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/O0FAOx-npc8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-      </center>      
+      <!-- <center> -->
+      <p>Coming Soon!</p>
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/u_8DJ06SQdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> -->
+      <!-- </center>  -->
       </div>
 
 
@@ -142,25 +144,25 @@
           <!-- Icon row -->
           <div class="row">
             <div class="two columns">
-              <a href="https://arxiv.org/pdf/2004.01228.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_main.png"></a>
+              <a href="https://arxiv.org/pdf/2112.09329.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_main.png"></a>
             </div>
-            <div class="two columns">
+<!--             <div class="two columns">
               <a href="assets/slides.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_slides.png"></a>
-            </div>
+            </div> -->
           </div>
           <!-- Link row -->
           <div class="row">
             <div class="two columns">
-              <a href="https://arxiv.org/pdf/2004.01228.pdf">Paper</a>
+              <a href="https://arxiv.org/pdf/2112.09329.pdf">Paper</a>
             </div>
-            <div class="two columns">
+<!--             <div class="two columns">
               <a href="assets/slides.pdf">Slides</a>
-            </div>
+            </div> -->
           </div>
 
           <div class="row">
               <br>
-              <a href="https://github.com/mikacuy/deformation_aware_embedding">Code</a>
+              <a href="https://github.com/mikacuy/point2cyl">Code</a>
               <!-- <p>Code to be released soon!</p> -->
           </div>
 
@@ -170,9 +172,71 @@
   <br>
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Problem Overview</h5>
+    <center>
+      <img src="images/SketchExtrudeFigure.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Reverse engineering from a raw geometry to a CAD model is an essential task to enable manipulation of the 3D data. We introduce a novel <b>geometry-aware</b> approach that casts the problem as an <b>extrusion cylinder decomposition</b> problem.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Extrusion Cylinder</h5>
+    <center>
+      <img src="images/definitions_v2_compressed.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            We predict <b>geometric proxies</b>, which are used to estimate extrusion parameters in <b>differentiable</b> and <b>closed-form</b> formulations. Namely, our geometric proxies are i) extrusion cylinder segmentation, ii) per-point normals
+            and iii) base-barrel segmentation, which are used to derive the extrusion cylinder parameters which are a) extrusion axis, b) extrusion center, c) normalized sketch, d) sketch scale and e) extrusion extent.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Our Network Architecture</h5>
+    <center>
+      <img src="images/network_architecture.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Network architecture of our Point2Cyl.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Qualitative Results</h5>
     <center>
-      <img src="images/shapenet_quali_fixed-crop.png" style="width:90%"></img>
+      <img src="images/qualitative_v3-compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative examples for reconstruction. Figure shows (top-to-bottom) (1) input point clouds, (2) our predicted segmentation, (3-5) corresponding set of extrusion cylinders and (6) our final reconstruction. This figure also illustrates that individual extrusion cylinders from our decomposition result from a variety of closed loops.
+          </p>
+        </div>
+        <br>
+    </center>
+        <center>
+      <img src="images/supp_quali2.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative examples from our Point2Cyl on the DeepCAD dataset. We also show comparisons with the conditional generation extension to DeepCAD and show that our approach result in output models that better match the input.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+<!--   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Qualitative Results</h5>
+    <center>
+      <img src="images/SketchExtrudeFigure.png" style="width:90%"></img>
         <div class="caption" >
           <p align="justify">
             Visualization of retrieval followed by deformation on ShapeNet. Our network is able to retrieve models
@@ -200,16 +264,16 @@
         <br>
 
     </center>
-  </div>
+  </div> -->
 
 		<!-- -->
 	<div class="section">
           <h5>Citation</h5> 
-  <pre style="margin:0"><code>@inproceedings{uy-deformawareretrieval-eccv20,
-      title = {Deformation-Aware 3D Model Embedding and Retrival},
-      author = {Mikaela Angelina Uy and Jingwei Huang and Minhyuk Sung and Tolga Birdal and Leonidas Guibas},
-      booktitle = {European Conference on Computer Vision (ECCV)},
-      year = {2020}
+  <pre style="margin:0"><code>@inproceedings{uy-point2cyl-cvpr22,
+      title = {Point2Cyl: Reverse Engineering 3D Objects from Point Clouds to Extrusion Cylinders},
+      author = {Mikaela Angelina Uy and Yen-yu Chang and Minhyuk Sung and Purvi Goel and Joseph Lambourne and Tolga Birdal and Leonidas Guibas},
+      booktitle = {Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year = {2022}
   }</code></pre>    			
 		</div>
 		
@@ -219,9 +283,7 @@
   <div class="section">
       <h5>Acknowledgements</h5>            
       <p>
-      This work is supported by a Google AR/VR University Research
-      Award, a Vannevar Bush Faculty Fellowship, a grant from the Stanford SAIL Toyota
-      Research Center, and gifts from the Adobe Corporation and the Dassault Foundation.
+      This work is supported by ARL grant W911NF-21-2-0104, a Vannevar Bush Faculty Fellowship, and gifts from the Autodesk and Adobe corporations. M. Sung also acknowledges the support by NRF grant (2021R1F1A1045604) and NST grant (CRC 21011) funded by the Korea government(MSIT) and grants from the Adobe and KT corporations.
 			</p>
   </div>
   </div>
